@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="02f7a0565e0e4e459af2a2c9efc44ada" Name="Diagram1">
+        <EntityTypeShape EntityType="TickedOffModel.Booking" Width="1.5" PointX="7.5" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TickedOffModel.Customer" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TickedOffModel.Inventory" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TickedOffModel.Pet" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TickedOffModel.Staff" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="TickedOffModel.State" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TickedOffModel.Stay" Width="1.5" PointX="7.5" PointY="6.625" IsExpanded="true" />
+        <AssociationConnector Association="TickedOffModel.FK_Booking_Pet" ManuallyRouted="false" />
+        <AssociationConnector Association="TickedOffModel.FK_Booking_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="TickedOffModel.FK_Customer_State" ManuallyRouted="false" />
+        <AssociationConnector Association="TickedOffModel.FK_Pet_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="TickedOffModel.FK_Stay_Pet" ManuallyRouted="false" />
+        <AssociationConnector Association="TickedOffModel.FK_Staff_State" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
