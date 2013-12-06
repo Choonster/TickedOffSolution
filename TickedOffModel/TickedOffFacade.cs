@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Metadata.Edm;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,11 +10,11 @@ namespace TickedOffModel
     // Public facade of the model
     public class TickedOffFacade : IDisposable
     {
-        private TickedOffDBEntities _context;
+        private TickedOffEntities _context;
 
         public TickedOffFacade()
         {
-            _context = new TickedOffDBEntities();
+            _context = new TickedOffEntities();
         }
 
         public IEnumerable<IBooking> Bookings
@@ -52,6 +52,11 @@ namespace TickedOffModel
         public void Dispose()
         {
             _context.Dispose();
+        }
+
+        private void Foo()
+        {
+           
         }
     }
 }

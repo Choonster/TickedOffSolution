@@ -5,6 +5,6 @@ namespace TickedOffModel
     {
         System.Collections.Generic.ICollection<ICustomer> Customers { get;  }
         System.Collections.Generic.ICollection<IStaff> Staff { get; }
-        string StateName { get; set; }
+        string Name { get; set; }
     }
 }
