@@ -12,7 +12,7 @@ namespace TickedOffModel
     using System;
     using System.Collections.Generic;
     
-    internal partial class Inventory
+    public partial class Inventory
     {
         public int ItemID { get; set; }
         public string ItemName { get; set; }

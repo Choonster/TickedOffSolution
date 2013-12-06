@@ -21,11 +21,11 @@ namespace TickedOffModel
             this.Configuration.LazyLoadingEnabled = false;
         Bookings = Set<TickedOffModel.Booking>();
         Customers = Set<TickedOffModel.Customer>();
-        Inventories = Set<TickedOffModel.Inventory>();
         Pets = Set<TickedOffModel.Pet>();
         Staffs = Set<TickedOffModel.Staff>();
         States = Set<TickedOffModel.State>();
         Stays = Set<TickedOffModel.Stay>();
+        Inventories = Set<TickedOffModel.Inventory>();
     
         }
     
@@ -36,10 +36,10 @@ namespace TickedOffModel
     
         internal DbSet<Booking> Bookings { get; set; }
         internal DbSet<Customer> Customers { get; set; }
-        internal DbSet<Inventory> Inventories { get; set; }
         internal DbSet<Pet> Pets { get; set; }
         internal DbSet<Staff> Staffs { get; set; }
         internal DbSet<State> States { get; set; }
         internal DbSet<Stay> Stays { get; set; }
+        public DbSet<Inventory> Inventories { get; set; }
     }
 }

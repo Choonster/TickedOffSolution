@@ -4,40 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TickedOffDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="TickedOffDBModelStoreContainer">
-          <EntitySet Name="Booking" EntityType="TickedOffDBModel.Store.Booking" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Customer" EntityType="TickedOffDBModel.Store.Customer" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Inventory" EntityType="TickedOffDBModel.Store.Inventory" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Pet" EntityType="TickedOffDBModel.Store.Pet" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Staff" EntityType="TickedOffDBModel.Store.Staff" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="State" EntityType="TickedOffDBModel.Store.State" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Stay" EntityType="TickedOffDBModel.Store.Stay" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_Booking_Pet" Association="TickedOffDBModel.Store.FK_Booking_Pet">
-            <End Role="Pet" EntitySet="Pet" />
-            <End Role="Booking" EntitySet="Booking" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Booking_Staff" Association="TickedOffDBModel.Store.FK_Booking_Staff">
-            <End Role="Staff" EntitySet="Staff" />
-            <End Role="Booking" EntitySet="Booking" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Customer_State" Association="TickedOffDBModel.Store.FK_Customer_State">
-            <End Role="State" EntitySet="State" />
-            <End Role="Customer" EntitySet="Customer" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Pet_Customer" Association="TickedOffDBModel.Store.FK_Pet_Customer">
-            <End Role="Customer" EntitySet="Customer" />
-            <End Role="Pet" EntitySet="Pet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Staff_State" Association="TickedOffDBModel.Store.FK_Staff_State">
-            <End Role="State" EntitySet="State" />
-            <End Role="Staff" EntitySet="Staff" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Stay_Pet" Association="TickedOffDBModel.Store.FK_Stay_Pet">
-            <End Role="Pet" EntitySet="Pet" />
-            <End Role="Stay" EntitySet="Stay" />
-          </AssociationSet>
-        </EntityContainer>
+    <Schema Namespace="TickedOffDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Booking">
           <Key>
             <PropertyRef Name="bookingID" />
@@ -71,13 +38,13 @@
         </EntityType>
         <EntityType Name="Inventory">
           <Key>
-            <PropertyRef Name="itemID" />
+            <PropertyRef Name="ItemID" />
           </Key>
-          <Property Name="itemID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="itemName" Type="nchar" Nullable="false" MaxLength="25" />
-          <Property Name="itemDescription" Type="nchar" Nullable="false" MaxLength="250" />
-          <Property Name="numberOnHand" Type="int" Nullable="false" />
-          <Property Name="numberOnOrder" Type="int" Nullable="false" />
+          <Property Name="ItemID" Type="int" Nullable="false" />
+          <Property Name="ItemName" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="ItemDescription" Type="nchar" MaxLength="250" Nullable="false" />
+          <Property Name="NumberOnHand" Type="int" Nullable="false" />
+          <Property Name="NumberOnOrder" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Pet">
           <Key>
@@ -116,7 +83,7 @@
           <Key>
             <PropertyRef Name="state" />
           </Key>
-          <Property Name="state" Type="nvarchar" Nullable="false" MaxLength="3" />
+          <Property Name="state" Type="nvarchar" MaxLength="3" Nullable="false" />
         </EntityType>
         <EntityType Name="Stay">
           <Key>
@@ -129,8 +96,8 @@
           <Property Name="stayCost" Type="money" />
         </EntityType>
         <Association Name="FK_Booking_Pet">
-          <End Role="Pet" Type="TickedOffDBModel.Store.Pet" Multiplicity="0..1" />
-          <End Role="Booking" Type="TickedOffDBModel.Store.Booking" Multiplicity="*" />
+          <End Role="Pet" Type="Self.Pet" Multiplicity="0..1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Pet">
               <PropertyRef Name="petID" />
@@ -141,8 +108,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Booking_Staff">
-          <End Role="Staff" Type="TickedOffDBModel.Store.Staff" Multiplicity="0..1" />
-          <End Role="Booking" Type="TickedOffDBModel.Store.Booking" Multiplicity="*" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Staff">
               <PropertyRef Name="staffID" />
@@ -153,8 +120,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Customer_State">
-          <End Role="State" Type="TickedOffDBModel.Store.State" Multiplicity="0..1" />
-          <End Role="Customer" Type="TickedOffDBModel.Store.Customer" Multiplicity="*" />
+          <End Role="State" Type="Self.State" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="State">
               <PropertyRef Name="state" />
@@ -165,8 +132,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Pet_Customer">
-          <End Role="Customer" Type="TickedOffDBModel.Store.Customer" Multiplicity="0..1" />
-          <End Role="Pet" Type="TickedOffDBModel.Store.Pet" Multiplicity="*" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Pet" Type="Self.Pet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
               <PropertyRef Name="customerID" />
@@ -177,8 +144,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Staff_State">
-          <End Role="State" Type="TickedOffDBModel.Store.State" Multiplicity="0..1" />
-          <End Role="Staff" Type="TickedOffDBModel.Store.Staff" Multiplicity="*" />
+          <End Role="State" Type="Self.State" Multiplicity="0..1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="State">
               <PropertyRef Name="state" />
@@ -189,8 +156,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Stay_Pet">
-          <End Role="Pet" Type="TickedOffDBModel.Store.Pet" Multiplicity="0..1" />
-          <End Role="Stay" Type="TickedOffDBModel.Store.Stay" Multiplicity="*" />
+          <End Role="Pet" Type="Self.Pet" Multiplicity="0..1" />
+          <End Role="Stay" Type="Self.Stay" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Pet">
               <PropertyRef Name="petID" />
@@ -200,6 +167,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="TickedOffDBModelStoreContainer">
+          <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pet" EntityType="Self.Pet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stay" EntityType="Self.Stay" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Booking_Pet" Association="Self.FK_Booking_Pet">
+            <End Role="Pet" EntitySet="Pet" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_Staff" Association="Self.FK_Booking_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_State" Association="Self.FK_Customer_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pet_Customer" Association="Self.FK_Pet_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Pet" EntitySet="Pet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_State" Association="Self.FK_Staff_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stay_Pet" Association="Self.FK_Stay_Pet">
+            <End Role="Pet" EntitySet="Pet" />
+            <End Role="Stay" EntitySet="Stay" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -207,7 +207,6 @@
         <EntityContainer Name="TickedOffDBEntities" p1:LazyLoadingEnabled="false" a:TypeAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
           <EntitySet Name="Bookings" EntityType="TickedOffModel.Booking" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <EntitySet Name="Customers" EntityType="TickedOffModel.Customer" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
-          <EntitySet Name="Inventories" EntityType="TickedOffModel.Inventory" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <EntitySet Name="Pets" EntityType="TickedOffModel.Pet" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <EntitySet Name="Staffs" EntityType="TickedOffModel.Staff" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <EntitySet Name="States" EntityType="TickedOffModel.State" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
@@ -236,6 +235,7 @@
             <End Role="State" EntitySet="States" />
             <End Role="Staff" EntitySet="Staffs" />
           </AssociationSet>
+          <EntitySet Name="Inventories" EntityType="TickedOffModel.Inventory" />
         </EntityContainer>
         <EntityType Name="Booking" a:TypeAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
           <Key>
@@ -271,16 +271,6 @@
           <Property Name="Postcode" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="State" Relationship="TickedOffModel.FK_Customer_State" FromRole="Customer" ToRole="State" />
           <NavigationProperty Name="Pets" Relationship="TickedOffModel.FK_Pet_Customer" FromRole="Customer" ToRole="Pet" />
-        </EntityType>
-        <EntityType Name="Inventory" a:TypeAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
-          <Key>
-            <PropertyRef Name="ItemID" />
-          </Key>
-          <Property Name="ItemID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="true" />
-          <Property Name="ItemDescription" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="true" />
-          <Property Name="NumberOnHand" Type="Int32" Nullable="false" />
-          <Property Name="NumberOnOrder" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Pet" a:TypeAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
           <Key>
@@ -411,6 +401,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="Int32" Nullable="false" />
+          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="ItemDescription" Type="String" Nullable="false" MaxLength="250" FixedLength="true" Unicode="true" />
+          <Property Name="NumberOnHand" Type="Int32" Nullable="false" />
+          <Property Name="NumberOnOrder" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -447,17 +447,6 @@
                 <ScalarProperty Name="Suburb" ColumnName="suburb" />
                 <ScalarProperty Name="StateName" ColumnName="state" />
                 <ScalarProperty Name="Postcode" ColumnName="postcode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Inventories">
-            <EntityTypeMapping TypeName="TickedOffModel.Inventory">
-              <MappingFragment StoreEntitySet="Inventory">
-                <ScalarProperty Name="ItemID" ColumnName="itemID" />
-                <ScalarProperty Name="ItemName" ColumnName="itemName" />
-                <ScalarProperty Name="ItemDescription" ColumnName="itemDescription" />
-                <ScalarProperty Name="NumberOnHand" ColumnName="numberOnHand" />
-                <ScalarProperty Name="NumberOnOrder" ColumnName="numberOnOrder" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -514,6 +503,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Inventories">
+            <EntityTypeMapping TypeName="TickedOffModel.Inventory">
+              <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="NumberOnOrder" ColumnName="NumberOnOrder" />
+                <ScalarProperty Name="NumberOnHand" ColumnName="NumberOnHand" />
+                <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -531,6 +531,7 @@
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
